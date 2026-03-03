@@ -158,30 +158,37 @@ const initializeData = async () => {
     const menuItemsCount = await MenuItem.countDocuments();
     if (menuItemsCount === 0) {
       const defaultMenuItems = [
-        { name: "Grilled Chicken Sandwich", price: 8.99, category: "lunch", description: "Juicy grilled chicken with fresh vegetables", emoji: "🥪", popular: true },
-        { name: "Caesar Salad", price: 6.99, category: "lunch", description: "Fresh romaine lettuce with caesar dressing", emoji: "🥗" },
-        { name: "Pancakes", price: 5.99, category: "breakfast", description: "Fluffy pancakes with maple syrup", emoji: "🥞", popular: true },
-        { name: "Coffee", price: 2.99, category: "beverages", description: "Freshly brewed coffee", emoji: "☕", popular: true },
-        { name: "Chocolate Muffin", price: 3.49, category: "snacks", description: "Rich chocolate chip muffin", emoji: "🧁" },
-        { name: "Fruit Smoothie", price: 4.99, category: "beverages", description: "Mixed fruit smoothie with yogurt", emoji: "🥤", popular: true }
+        { name: 'Masala Dosa', price: 60, category: 'breakfast', description: 'Crispy South Indian crepe with spicy potato filling', emoji: '🫓', imageUrl: 'https://images.unsplash.com/photo-1630383249896-424e482df921?w=400', popular: true, available: true },
+        { name: 'Idli Sambar', price: 40, category: 'breakfast', description: 'Steamed rice cakes with lentil soup', emoji: '🍘', imageUrl: 'https://images.unsplash.com/photo-1589301760014-d929f3979dbc?w=400', available: true },
+        { name: 'Vada Pav', price: 25, category: 'snacks', description: 'Mumbai special potato fritter sandwich', emoji: '🍔', imageUrl: 'https://images.unsplash.com/photo-1606491048164-fad4a855d1f1?w=400', popular: true, available: true },
+        { name: 'Paneer Butter Masala', price: 120, category: 'lunch', description: 'Cottage cheese in rich tomato gravy', emoji: '🍛', imageUrl: 'https://images.unsplash.com/photo-1631452180519-c014fe946bc7?w=400', popular: true, available: true },
+        { name: 'Biryani', price: 150, category: 'lunch', description: 'Fragrant basmati rice with spices and vegetables', emoji: '🍚', imageUrl: 'https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?w=400', popular: true, available: true },
+        { name: 'Samosa', price: 20, category: 'snacks', description: 'Crispy pastry filled with spiced potatoes', emoji: '🥟', imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?w=400', available: true },
+        { name: 'Pav Bhaji', price: 80, category: 'lunch', description: 'Spicy vegetable mash served with bread', emoji: '🍲', imageUrl: 'https://images.unsplash.com/photo-1606491048164-fad4a855d1f1?w=400', available: true },
+        { name: 'Chai', price: 15, category: 'beverages', description: 'Indian spiced tea', emoji: '☕', imageUrl: 'https://images.unsplash.com/photo-1571934811356-5cc061b6821f?w=400', popular: true, available: true },
+        { name: 'Coffee', price: 20, category: 'beverages', description: 'Fresh brewed filter coffee', emoji: '☕', imageUrl: 'https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400', available: true },
+        { name: 'Mango Lassi', price: 50, category: 'beverages', description: 'Sweet mango yogurt drink', emoji: '🥤', imageUrl: 'https://images.unsplash.com/photo-1623428454614-abaf00244e52?w=400', available: true },
+        { name: 'Upma', price: 35, category: 'breakfast', description: 'Savory semolina porridge', emoji: '🍲', imageUrl: 'https://images.unsplash.com/photo-1589301773881-13a2b23f83b2?w=400', available: true },
+        { name: 'Poha', price: 30, category: 'breakfast', description: 'Flattened rice with spices', emoji: '🍚', imageUrl: 'https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?w=400', available: true },
+        { name: 'Spring Roll', price: 40, category: 'snacks', description: 'Crispy vegetable rolls', emoji: '🥙', imageUrl: 'https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=400', available: true },
+        { name: 'Gulab Jamun', price: 35, category: 'snacks', description: 'Sweet milk-solid dumplings', emoji: '🍡', imageUrl: 'https://images.unsplash.com/photo-1589217157232-464b505b197f?w=400', available: true },
+        { name: 'Ice Cream', price: 45, category: 'snacks', description: 'Assorted flavors', emoji: '🍨', imageUrl: 'https://images.unsplash.com/photo-1563805042-7684c019e1cb?w=400', available: true }
       ];
       await MenuItem.insertMany(defaultMenuItems);
-      console.log('Default menu items created');
+      console.log('✅ Added menu items with images');
     }
 
     // Check if time slots exist
     const timeSlotsCount = await TimeSlot.countDocuments();
     if (timeSlotsCount === 0) {
       const defaultTimeSlots = [
-        { time: '9:00-10:00', label: '9:00 - 10:00 AM' },
-        { time: '10:00-11:00', label: '10:00 - 11:00 AM' },
-        { time: '11:00-12:00', label: '11:00 - 12:00 PM' },
-        { time: '12:00-13:00', label: '12:00 - 1:00 PM' },
-        { time: '13:00-14:00', label: '1:00 - 2:00 PM' },
-        { time: '14:00-15:00', label: '2:00 - 3:00 PM' }
+        { time: '08:00', label: 'Breakfast (8:00 AM - 10:00 AM)', total: 30, booked: 0 },
+        { time: '12:00', label: 'Lunch (12:00 PM - 2:00 PM)', total: 50, booked: 0 },
+        { time: '16:00', label: 'Snacks (4:00 PM - 6:00 PM)', total: 25, booked: 0 },
+        { time: '19:00', label: 'Dinner (7:00 PM - 9:00 PM)', total: 40, booked: 0 }
       ];
       await TimeSlot.insertMany(defaultTimeSlots);
-      console.log('Default time slots created');
+      console.log('✅ Added time slots');
     }
 
     // Check if notices exist
@@ -190,17 +197,25 @@ const initializeData = async () => {
       const defaultNotices = [
         { 
           title: 'Welcome to Campus Canteen!', 
-          message: 'Enjoy our fresh meals and convenient online ordering system.', 
-          type: 'info' 
+          message: 'Enjoy fresh food daily. Order now!', 
+          type: 'info',
+          urgent: false
         },
         { 
-          title: '20% Off Lunch Combos', 
-          message: 'Get 20% off on all lunch combo meals this week!', 
-          type: 'special' 
+          title: 'Special Discount Today', 
+          message: '20% off on all lunch items!', 
+          type: 'special',
+          urgent: true
+        },
+        { 
+          title: 'New Menu Items', 
+          message: 'Check out our new South Indian breakfast options', 
+          type: 'info',
+          urgent: false
         }
       ];
       await Notice.insertMany(defaultNotices);
-      console.log('Default notices created');
+      console.log('✅ Added notices');
     }
   } catch (error) {
     console.error('Error initializing data:', error);
@@ -325,15 +340,15 @@ app.post('/api/send-otp', async (req, res) => {
   }
 });
 
-// User Registration with OTP verification
+// User Registration (simplified - no OTP for now)
 app.post('/api/register', async (req, res) => {
   try {
-    const { name, email, username, password, userType, otp } = req.body;
+    const { name, email, username, password, userType } = req.body;
 
     // Validation
-    if (!name || !email || !username || !password || !userType || !otp) {
+    if (!name || !email || !username || !password || !userType) {
       return res.status(400).json({ 
-        message: 'All fields including OTP are required' 
+        message: 'All fields are required' 
       });
     }
 
@@ -342,46 +357,6 @@ app.post('/api/register', async (req, res) => {
         message: 'Password must be at least 6 characters long' 
       });
     }
-
-    // Verify OTP
-    const storedOtpData = otpStore.get(email);
-    
-    if (!storedOtpData) {
-      return res.status(400).json({ 
-        message: 'OTP expired or not found. Please request a new OTP.' 
-      });
-    }
-
-    // Check if OTP is expired
-    if (Date.now() > storedOtpData.expiresAt) {
-      otpStore.delete(email);
-      return res.status(400).json({ 
-        message: 'OTP has expired. Please request a new OTP.' 
-      });
-    }
-
-    // Check OTP attempts (prevent brute force)
-    if (storedOtpData.attempts >= 3) {
-      otpStore.delete(email);
-      return res.status(400).json({ 
-        message: 'Too many failed attempts. Please request a new OTP.' 
-      });
-    }
-
-    // Verify OTP
-    if (storedOtpData.otp !== otp) {
-      storedOtpData.attempts += 1;
-      otpStore.set(email, storedOtpData);
-      return res.status(400).json({ 
-        message: `Invalid OTP. ${3 - storedOtpData.attempts} attempts remaining.` 
-      });
-    }
-
-    // OTP verified - remove from store
-    otpStore.delete(email);
-
-    // OTP verified - remove from store
-    otpStore.delete(email);
 
     // Check if user already exists
     const existingUser = await User.findOne({ 
